@@ -1,0 +1,24 @@
+# Template file for OnlyOffice for Void Linux distribution.
+# template from which I was inspired ---> https://www.reddit.com/r/voidlinux/comments/mm108y/onlyofficedesktopeditors_template_for_void_linux/?rdt=55366
+pkgname=onlyoffice-desktopeditors
+version=8.2.2
+revision=1
+archs="x86_64"
+depends="libstdc++ curl xdg-utils dejavu-fonts-ttf liberation-fonts-ttf font-crosextra-carlito-ttf hicolor-icon-theme"
+hostmakedepends="tar xz"
+short_desc="An office suite that combines text, spreadsheet and presentation editors"
+maintainer="kveld9 <kveld9@disroot.org>"
+license="AGPL-3.0-only"
+homepage="https://www.onlyoffice.com"
+distfiles="https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb"
+checksum="0f02a93cccac2e18c00626141836ecda31b4960473597f97e21afe2dbda5c6a9"
+nostrip=yes
+
+do_extract() {
+    mkdir -p ${DESTDIR}
+    ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/onlyoffice-desktopeditors_amd64.deb
+}
+
+do_install() {
+    tar xf data.tar.xz -C ${DESTDIR}
+}
